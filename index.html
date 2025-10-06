@@ -77,27 +77,6 @@
         Email: "donald.goings.ctr@us.af.mil",
         Phone: "904-5061"
       }
-      // Add more units here as needed
     };
 
-    function showContactInfo() {
-      const unit = document.getElementById("unit").value;
-      const infoDiv = document.getElementById("contactInfo");
-
-      if (unit && contacts[unit]) {
-        const { CST, CSA, Email, Phone } = contacts[unit];
-        infoDiv.innerHTML = `
-          <strong>CST:</strong> ${CST}<br>
-          <strong>CSA:</strong> ${CSA}<br>
-          <strong>Email:</strong> <a href="mailto:${Email}">${Email}</a><br>
-          <strong>Phone:</strong> ${Phone}
-        `;
-        infoDiv.style.display = "block";
-      } else {
-        infoDiv.innerHTML = `<em>No contact info available for this unit.</em>`;
-        infoDiv.style.display = "block";
-      }
-    }
-  </script>
-</body>
-</html>
+    function showContactInfo
