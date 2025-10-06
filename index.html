@@ -76,7 +76,7 @@
         CSA: "N/A",
         Email: "donald.goings.ctr@us.af.mil",
         Phone: "904-5061"
-      },
+      }
       // Add more units here as needed
     };
 
@@ -94,8 +94,8 @@
         `;
         infoDiv.style.display = "block";
       } else {
-        infoDiv.style.display = "none";
-        infoDiv.innerHTML = "";
+        infoDiv.innerHTML = `<em>No contact info available for this unit.</em>`;
+        infoDiv.style.display = "block";
       }
     }
   </script>
