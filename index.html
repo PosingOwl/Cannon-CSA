@@ -4,23 +4,57 @@
   <meta charset="UTF-8">
   <title>Unit Contact Directory</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    label, select { font-size: 1.2em; margin-bottom: 10px; }
-    .info {
-      margin-top: 20px;
-      padding: 15px;
-      border: 1px solid #ccc;
-      background-color: #f9f9f9;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f0f4f8;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    select {
       font-size: 1.1em;
+      padding: 8px;
+      margin-bottom: 20px;
+      width: 400px;
+    }
+
+    .info {
       display: none;
+      background-color: #ffffff;
+      border: 2px solid #0077cc;
+      border-radius: 12px;
+      padding: 20px;
+      width: 400px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .info strong {
+      color: #0077cc;
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <h2>Unit Contact Directory</h2>
-  <label for="unit">Select Unit:</label>
   <select id="unit" onchange="showContactInfo()">
     <option value="">--Select Unit--</option>
+    <option value="27SOCS">27th Special Operations Communications Squadron (27th SOCS)</option>
     <option value="3AMU">3rd Aircraft Maintenance Unit (3rd AMU)</option>
     <option value="3OS">3rd Special Operations Squadron (3rd SOS)</option>
     <option value="6AMX">6th Special Operations Aircraft Maintenance Squadron (6th SOAMXS)</option>
@@ -64,7 +98,6 @@
     <option value="727MX">727th Special Operations Aircraft Maintenance Squadron (727th SOAMXS)</option>
     <option value="DET17">Detachment 17 Training Squadron/Field Training Attachment (DET 17)</option>
     <option value="OSI">Detachment 120/OSI (DET 120/OSI)</option>
-    <option value="27SOCS">27th Special Operations Communications Squadron (27th SOCS)</option>
   </select>
 
   <div class="info" id="contactInfo"></div>
@@ -77,6 +110,27 @@
         Email: "donald.goings.ctr@us.af.mil",
         Phone: "904-5061"
       }
+      // Add more units here
     };
 
-    function showContactInfo
+    function showContactInfo() {
+      const unit = document.getElementById("unit").value;
+      const infoDiv = document.getElementById("contactInfo");
+
+      if (unit && contacts[unit]) {
+        const { CST, CSA, Email, Phone } = contacts[unit];
+        infoDiv.innerHTML = `
+          <strong>CST:</strong> ${CST}<br>
+          <strong>CSA:</strong> ${CSA}<br>
+          <strong>Email:</strong> <a href="mailto:${Email}">${Email}</a><br>
+          <strong>Phone:</strong> ${Phone}
+        `;
+        infoDiv.style.display = "block";
+      } else {
+        infoDiv.innerHTML = `<em>No contact info available for this unit.</em>`;
+        infoDiv.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
