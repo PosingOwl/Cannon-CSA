@@ -72,14 +72,12 @@
   <script>
     const contacts = {
       "27SOCS": {
-        CST: "Donald Goings",
-        CSA: "N/A",
+        Technician: "Donald Goings",
         Email: "donald.goings.ctr@us.af.mil",
         Phone: "904-5061"
       },
       "LRS": {
-        CST: "Kim Bullard and Joshual Cleveland",
-        CSA: "N/A",
+        Technician: "Kim Bullard and Joshual Cleveland",
         Email: "27SOLRS@us.af.mil",
         Phone: "904-5524"
       }
@@ -90,10 +88,9 @@
       const infoDiv = document.getElementById("contactInfo");
 
       if (unit && contacts[unit]) {
-        const { CST, CSA, Email, Phone } = contacts[unit];
+        const { Technician, Email, Phone } = contacts[unit];
         infoDiv.innerHTML = `
-          <strong>CST:</strong> ${CST}<br>
-          <strong>CSA:</strong> ${CSA}<br>
+          <strong>Client Support Technician:</strong> ${Technician}<br>
           <strong>Email:</strong> <a href="mailto:${Email}">${Email}</a><br>
           <strong>Phone:</strong> ${Phone}
         `;
