@@ -2,11 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Squadron CST/CSA Directory</title>
+  <title>Squadron CST Directory</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     label, select { font-size: 1.2em; margin-bottom: 10px; }
-    .info { margin-top: 20px; font-size: 1.1em; }
+    .info {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      font-size: 1.1em;
+      width: fit-content;
+    }
   </style>
 </head>
 <body>
@@ -63,52 +70,55 @@
 
   <script>
     const contacts = {
-      "3AMU": { CST: "", CSA: "", Email: "", Phone: "" },
-      "3OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "6AMX": { CST: "", CSA: "", Email: "", Phone: "" },
-      "6OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "9AMU": { CST: "", CSA: "", Email: "", Phone: "" },
-      "9AMX": { CST: "", CSA: "", Email: "", Phone: "" },
-      "9OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "12OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "16AMU": { CST: "", CSA: "", Email: "", Phone: "" },
-      "16AMX": { CST: "", CSA: "", Email: "", Phone: "" },
-      "16OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "17OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "20AMU": { CST: "", CSA: "", Email: "", Phone: "" },
-      "20AMX": { CST: "", CSA: "", Email: "", Phone: "" },
-      "20OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "26STS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "27SOG": { CST: "", CSA: "", Email: "", Phone: "" },
-      "AOS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "AMXS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "CES": { CST: "", CSA: "", Email: "", Phone: "" },
-      "CONS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "CPTS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "CS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "FSS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "LRS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "MDG": { CST: "", CSA: "", Email: "", Phone: "" },
-      "MSG": { CST: "", CSA: "", Email: "", Phone: "" },
-      "MUNS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "MXS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "MXG": { CST: "", CSA: "", Email: "", Phone: "" },
-      "OSS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "SFS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "SOW": { CST: "", CSA: "", Email: "", Phone: "" },
-      "TAOS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "TRS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "310OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "318OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "33OS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "43IS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "56IS": { CST: "", CSA: "", Email: "", Phone: "" },
-      "727MX": { CST: "", CSA: "", Email: "", Phone: "" },
-      "DET17": { CST: "", CSA: "", Email: "", Phone: "" },
-      "OSI": { CST: "", CSA: "", Email: "", Phone: "" }
+      "3AMU": { CST: "Capt. Smith", Email: "smith@military.com", Phone: "(555) 111-1111" },
+      "3OS": { CST: "Capt. Taylor", Email: "taylor@military.com", Phone: "(555) 222-2222" },
+      "6AMX": { CST: "", Email: "", Phone: "" },
+      "6OS": { CST: "", Email: "", Phone: "" },
+      "9AMU": { CST: "", Email: "", Phone: "" },
+      "9AMX": { CST: "", Email: "", Phone: "" },
+      "9OS": { CST: "", Email: "", Phone: "" },
+      "12OS": { CST: "", Email: "", Phone: "" },
+      "16AMU": { CST: "", Email: "", Phone: "" },
+      "16AMX": { CST: "", Email: "", Phone: "" },
+      "16OS": { CST: "", Email: "", Phone: "" },
+      "17OS": { CST: "", Email: "", Phone: "" },
+      "20AMU": { CST: "", Email: "", Phone: "" },
+      "20AMX": { CST: "", Email: "", Phone: "" },
+      "20OS": { CST: "", Email: "", Phone: "" },
+      "26STS": { CST: "", Email: "", Phone: "" },
+      "27SOG": { CST: "", Email: "", Phone: "" },
+      "AOS": { CST: "", Email: "", Phone: "" },
+      "AMXS": { CST: "", Email: "", Phone: "" },
+      "CES": { CST: "", Email: "", Phone: "" },
+      "CONS": { CST: "", Email: "", Phone: "" },
+      "CPTS": { CST: "", Email: "", Phone: "" },
+      "CS": { CST: "", Email: "", Phone: "" },
+      "FSS": { CST: "", Email: "", Phone: "" },
+      "LRS": { CST: "", Email: "", Phone: "" },
+      "MDG": { CST: "", Email: "", Phone: "" },
+      "MSG": { CST: "", Email: "", Phone: "" },
+      "MUNS": { CST: "", Email: "", Phone: "" },
+      "MXS": { CST: "", Email: "", Phone: "" },
+      "MXG": { CST: "", Email: "", Phone: "" },
+      "OSS": { CST: "", Email: "", Phone: "" },
+      "SFS": { CST: "", Email: "", Phone: "" },
+      "SOW": { CST: "", Email: "", Phone: "" },
+      "TAOS": { CST: "", Email: "", Phone: "" },
+      "TRS": { CST: "", Email: "", Phone: "" },
+      "310OS": { CST: "", Email: "", Phone: "" },
+      "318OS": { CST: "", Email: "", Phone: "" },
+      "33OS": { CST: "", Email: "", Phone: "" },
+      "43IS": { CST: "", Email: "", Phone: "" },
+      "56IS": { CST: "", Email: "", Phone: "" },
+      "727MX": { CST: "", Email: "", Phone: "" },
+      "DET17": { CST: "", Email: "", Phone: "" },
+      "OSI": { CST: "", Email: "", Phone: "" }
     };
 
     function showContactInfo() {
       const squadron = document.getElementById("squadron").value;
       const infoDiv = document.getElementById("contactInfo");
 
+      if (contacts[squadron] && contacts[squadron].CST) {
+        const { CST, Email, Phone } = contacts[squadron];
+        info
