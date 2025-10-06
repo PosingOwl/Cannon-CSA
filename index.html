@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Squadron CST/CSA Directory</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    label, select { font-size: 1.2em; margin-bottom: 10px; }
+    .info { margin-top: 20px; font-size: 1.1em; }
+  </style>
+</head>
+<body>
+  <h2>Squadron Contact Directory</h2>
+  <label for="squadron">Select Squadron:</label>
+  <select id="squadron" onchange="showContactInfo()">
+    <option value="">--Choose--</option>
+    <option value="Alpha">Alpha Squadron</option>
+    <option value="Bravo">Bravo Squadron</option>
+    <option value="Charlie">Charlie Squadron</option>
+  </select>
+
+  <div class="info" id="contactInfo"></div>
+
+  <script>
+    const contacts = {
+      "Alpha": {
+        CST: "Capt. Jane Doe",
+        CSA: "Sgt. John Smith",
+        Email: "alpha@military.example.com",
+        Phone: "(555) 123-4567"
+      },
+      "Bravo": {
+        CST: "Capt. Alice Johnson",
+        CSA: "Sgt. Mike Brown",
+        Email: "bravo@military.example.com",
+        Phone: "(555) 987-6543"
+      },
+      "Charlie": {
+        CST: "Capt. Emily Davis",
+        CSA: "Sgt. Tom Wilson",
+        Email: "charlie@military.example.com",
+        Phone: "(555) 456-7890"
+      }
+    };
+
+    function showContactInfo() {
+      const squadron = document.getElementById("squadron").value;
+      const infoDiv = document.getElementById("contactInfo");
+
+      if (contacts[squadron]) {
+        const { CST, CSA, Email, Phone } = contacts[squadron];
+        infoDiv.innerHTML = `
+          <strong>CST:</strong> ${CST}<br>
+          <strong>CSA:</strong> ${CSA}<br>
+          <strong>Email:</strong> <a href="mailto:${Email}">${Email}</a><br>
+          <strong>Phone:</strong> ${Phone}
+        `;
+      } else {
+        infoDiv.innerHTML = "";
+      }
+    }
+  </script>
+</body>
+</html>
