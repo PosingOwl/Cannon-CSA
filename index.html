@@ -89,10 +89,9 @@
       const infoDiv = document.getElementById("contactInfo");
 
       if (unit && contacts[unit]) {
-        const { CST, CSA, Email, Phone } = contacts[unit];
+        const { CST, Email, Phone } = contacts[unit];
         infoDiv.innerHTML = `
           <strong>CST:</strong> ${CST}<br>
-          <strong>CSA:</strong> ${CSA}<br>
           <strong>Email:</strong> <a href="mailto:${Email}">${Email}</a><br>
           <strong>Phone:</strong> ${Phone}
         `;
