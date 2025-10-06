@@ -77,7 +77,7 @@
         Phone: "904-5061"
       },
       "LRS": {
-        Technician: "Kim Bullard<br>Joshual Cleveland",
+        Technician: "Kim Bullard<br>Joshua Cleveland",
         Email: "27SOLRS@us.af.mil",
         Phone: "904-5524"
       }
@@ -90,7 +90,7 @@
       if (unit && contacts[unit]) {
         const { Technician, Email, Phone } = contacts[unit];
         infoDiv.innerHTML = `
-          <strong>Client Support Technician:</strong> ${Technician}<br>
+          <strong>Client Support Technician:</strong><br>${Technician}<br><br>
           <strong>Email:</strong> <a href="mailto:${Email}">${Email}</a><br>
           <strong>Phone:</strong> ${Phone}
         `;
