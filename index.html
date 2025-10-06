@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Squadron CST Directory</title>
+  <title>Unit Contact Directory</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     label, select { font-size: 1.2em; margin-bottom: 10px; }
@@ -17,10 +17,10 @@
   </style>
 </head>
 <body>
-  <h2>Squadron Contact Directory</h2>
-  <label for="squadron">Select Squadron:</label>
-  <select id="squadron" onchange="showContactInfo()">
-    <option value="">--Select Squadron--</option>
+  <h2>Unit Contact Directory</h2>
+  <label for="unit">Select Unit:</label>
+  <select id="unit" onchange="showContactInfo()">
+    <option value="">--Select Unit--</option>
     <option value="3AMU">3rd Aircraft Maintenance Unit (3rd AMU)</option>
     <option value="3OS">3rd Special Operations Squadron (3rd SOS)</option>
     <option value="6AMX">6th Special Operations Aircraft Maintenance Squadron (6th SOAMXS)</option>
@@ -71,27 +71,26 @@
 
   <script>
     const contacts = {
-      "3AMU": { CST: "Capt. Smith", Email: "smith@military.com", Phone: "(555) 111-1111" },
-      "3OS": { CST: "Capt. Taylor", Email: "taylor@military.com", Phone: "(555) 222-2222" },
-      // other squadrons...
-      "OSI": { CST: "", Email: "", Phone: "" },
       "27SOCS": {
-        CST: "27 SOCS",
+        CST: "Donald Goings",
+        CSA: "",
         Email: "donald.goings.ctr@us.af.mil",
-        Phone: "904-4357"
-      }
+        Phone: "904-5061"
+      },
+      // Add more units here as needed
     };
 
     function showContactInfo() {
-      const squadron = document.getElementById("squadron").value;
+      const unit = document.getElementById("unit").value;
       const infoDiv = document.getElementById("contactInfo");
 
-      if (contacts[squadron] && contacts[squadron].CST) {
-        const { CST, Email, Phone } = contacts[squadron];
+      if (contacts[unit]) {
+        const { CST, CSA, Email, Phone } = contacts[unit];
         infoDiv.innerHTML = `
-          <strong>CST:</strong> ${CST}<br>
+          <strong>CST:</strong> ${CST || "N/A"}<br>
+          <strong>CSA:</strong> ${CSA || "N/A"}<br>
           <strong>Email:</strong> <a href="mailto:${Email}">${Email}</a><br>
-          <strong>Phone:</strong> ${Phone}
+          <strong>Phone:</strong> ${Phone || "N/A"}
         `;
       } else {
         infoDiv.innerHTML = "";
