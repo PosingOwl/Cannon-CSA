@@ -83,18 +83,18 @@
     const contacts = {
       "27SOCS": {
         Technician: ["Donald Goings"],
-        Email: "donald.goings.ctr@us.af.mil",
-        Phone: "904-5061"
+        Email: ["donald.goings.ctr@us.af.mil"],
+        Phone: ["904-5061"]
       },
       "LRS": {
         Technician: ["Kim Bullard", "Joshua Cleveland"],
-        Email: "27SOLRS@us.af.mil",
-        Phone: "904-5524"
+        Email: ["27SOLRS@us.af.mil"],
+        Phone: ["904-5524"]
       },
       "3AMU": {
         Technician: ["Provided by 27 SOCS"],
-        Email: "27SOCS.EITOS.CST@us.af.mil",
-        Phone: "904-4357"
+        Email: ["27SOCS.EITOS.CST@us.af.mil"],
+        Phone: ["904-4357"]
       }
     };
 
@@ -104,17 +104,26 @@
 
       if (unit && contacts[unit]) {
         const { Technician, Email, Phone } = contacts[unit];
+
         let technicianHTML = "<strong>Client Support Technician:</strong><ul>";
         Technician.forEach(name => {
           technicianHTML += `<li>${name}</li>`;
         });
         technicianHTML += "</ul>";
 
-        infoDiv.innerHTML = `
-          ${technicianHTML}
-          <strong>Email:</strong> <a href="mailto:${Email}">${Email}</a><br>
-          <strong>Phone:</strong> ${Phone}
-        `;
+        let emailHTML = "<strong>Email:</strong><ul>";
+        Email.forEach(address => {
+          emailHTML += `<li><a href="mailto:${address}">${address}</a></li>`;
+        });
+        emailHTML += "</ul>";
+
+        let phoneHTML = "<strong>Phone:</strong><ul>";
+        Phone.forEach(number => {
+          phoneHTML += `<li>${number}</li>`;
+        });
+        phoneHTML += "</ul>";
+
+        infoDiv.innerHTML = technicianHTML + emailHTML + phoneHTML;
         infoDiv.style.display = "block";
       } else {
         infoDiv.innerHTML = `<em>No contact info available for this unit.</em>`;
