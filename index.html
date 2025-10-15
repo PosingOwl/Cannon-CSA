@@ -1,133 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Cannon AFB CST Contact Directory</title>
+  <title>Cannon CST Contact Directory</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f5e6cc;
       margin: 0;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #eef2f7;
+      padding: 20px;
     }
 
-    h2 {
-      margin-bottom: 20px;
-    }
-
-    select {
-      font-size: 1.1em;
-      padding: 8px;
-      margin-bottom: 20px;
-      width: 400px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    .info {
-      display: none;
-      background-color: #ffffff;
-      border: 2px solid #0077cc;
+    .container {
+      background-color: #fff8e1;
+      padding: 30px;
       border-radius: 20px;
-      padding: 25px;
-      width: 400px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
       text-align: left;
-      animation: fadeIn 0.3s ease-in-out;
     }
 
-    .info strong {
-      color: #0077cc;
+    th {
+      background-color: #d4a373;
+      color: white;
     }
 
-    .info ul {
-      margin: 5px 0 15px 20px;
-      padding: 0;
-    }
-
-    .info li {
-      margin-bottom: 5px;
-    }
-
-    a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    tr:hover {
+      background-color: #f1f1f1;
     }
   </style>
 </head>
 <body>
-  <h2>Cannon AFB CST Contact Directory</h2>
-  <select id="unit" onchange="showContactInfo()">
-    <option value="">--Select Unit--</option>
-    <option value="27SOCS">27th Special Operations Communications Squadron (27th SOCS)</option>
-    <option value="LRS">27th Special Operations Logistics Readiness Squadron (27th SOLRS)</option>
-    <option value="3AMU">3rd Aircraft Maintenance Unit (3rd AMU)</option>
-    <!-- Add more units here -->
-  </select>
+  <div class="container">
+    <h1>Cannon CST Contact Directory</h1>
+    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for unit, name, or email...">
 
-  <div class="info" id="contactInfo"></div>
+    <table id="contactTable">
+      <thead>
+        <tr>
+          <th>Unit</th>
+          <th>CST Name</th>
+          <th>DSN</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3AMU</td>
+          <td>SrA Smith</td>
+          <td>575-784-1234</td>
+          <td>smith.cst@us.af.mil</td>
+        </tr>
+        <tr>
+          <td>6OS</td>
+          <td>SSgt Johnson</td>
+          <td>575-784-5678</td>
+          <td>johnson.cst@us.af.mil</td>
+        </tr>
+        <tr>
+          <td>9AMX</td>
+          <td>TSgt Lee</td>
+          <td>575-784-9012</td>
+          <td>lee.cst@us.af.mil</td>
+        </tr>
+        <tr>
+          <td>27SOG</td>
+          <td>MSgt Taylor</td>
+          <td>575-784-7890</td>
+          <td>taylor.cst@us.af.mil</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
 
   <script>
-    const contacts = {
-      "27SOCS": {
-        Technician: ["Provided by 27 SOCS"],
-        Email: ["27SOCS.EITOS.CST@us.af.mil"],
-        Phone: ["904-4357"]
-      },
-      "LRS": {
-        Technician: ["Kim Bullard", "Joshua Cleveland"],
-        Email: ["27SOLRS@us.af.mil"],
-        Phone: ["904-5524"]
-      },
-      "3AMU": {
-        Technician: ["Provided by 27 SOCS"],
-        Email: ["27SOCS.EITOS.CST@us.af.mil"],
-        Phone: ["904-4357"]
-      }
-    };
+    function filterTable() {
+      const input = document.getElementById("searchInput").value.toUpperCase();
+      const table = document.getElementById("contactTable");
+      const rows = table.getElementsByTagName("tr");
 
-    function showContactInfo() {
-      const unit = document.getElementById("unit").value;
-      const infoDiv = document.getElementById("contactInfo");
+      for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName("td");
+        let match = false;
 
-      if (unit && contacts[unit]) {
-        const { Technician, Email, Phone } = contacts[unit];
+        for (let j = 0; j < cells.length; j++) {
+          if (cells[j].textContent.toUpperCase().includes(input)) {
+            match = true;
+            break;
+          }
+        }
 
-        let technicianHTML = "<strong>Client Support Technician:</strong><ul>";
-        Technician.forEach(name => {
-          technicianHTML += `<li>${name}</li>`;
-        });
-        technicianHTML += "</ul>";
-
-        let emailHTML = "<strong>Email:</strong><ul>";
-        Email.forEach(address => {
-          emailHTML += `<li><a href="mailto:${address}">${address}</a></li>`;
-        });
-        emailHTML += "</ul>";
-
-        let phoneHTML = "<strong>Phone:</strong><ul>";
-        Phone.forEach(number => {
-          phoneHTML += `<li>${number}</li>`;
-        });
-        phoneHTML += "</ul>";
-
-        infoDiv.innerHTML = technicianHTML + emailHTML + phoneHTML;
-        infoDiv.style.display = "block";
-      } else {
-        infoDiv.innerHTML = `<em>No contact info available for this unit.</em>`;
-        infoDiv.style.display = "block";
+        rows[i].style.display = match ? "" : "none";
       }
     }
   </script>
